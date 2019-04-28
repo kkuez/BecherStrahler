@@ -28,17 +28,48 @@ public class RPiGPIODemo {
     public static final int OUTPUT = 1;
 
     public static void main(String[] args) {
+
+int aufladezeit=Integer.parseInt(args[0]);
+int entladezeit=Integer.parseInt(args[1]);
+boolean blinken=Boolean.parseBoolean(args[2]);
         JWiringPiController gpio = new JWiringPiController();
         if (gpio.wiringPiSetup() < 0) {
             System.out.println("WiringPi setup error");
             return;
         }
-        gpio.pinMode(25, OUTPUT);
-        while(true) {
-            gpio.digitalWrite(25, HIGH);
-            gpio.delay(1000);
-            gpio.digitalWrite(25, LOW);
-            gpio.delay(1000);
+
+        gpio.pinMode(01, OUTPUT);
+if(blinken){
+	int zaehler=0;
+
+boolean wirdstaerker=true;        
+while(true) {
+zaehler++;
+System.out.println("Neuer Zkylus, "+zaehler);         
+   gpio.digitalWrite(01, HIGH);
+if(wirdstaerker ){
+aufladezeit++;
+}else{
+aufladezeit--;
+}>
+            gpio.delay(aufladezeit);
+if(aufladezeit>20){
+wirdstaerker=false;
+}
+if(aufladezeit<3){
+wirdstaerker=true;
+}
+            gpio.digitalWrite(01, LOW);
+            gpio.delay(entladezeit);//5ms sind ein guter wert
         }
-    }
+    
+}else{
+while(true){
+gpio.digitalWrite(01,HIGH);
+gpio.delay(aufladezeit);
+gpio.digitalWrite(01,LOW);
+gpio.delay(entladezeit);//5ms sind ein guter Wert
+}
+}
+}
 }
