@@ -14,10 +14,6 @@ public class TikToker extends Thread{
     List<TikTok> tiktokListe = new ArrayList<>();
             TikTok tiktokZumFuellen=new TikTok(true, Calendar.getInstance().getTimeInMillis()) ;
 
-
-
-
-
     @Override
     public void run(){
 
