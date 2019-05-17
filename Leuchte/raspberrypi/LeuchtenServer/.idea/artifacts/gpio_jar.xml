@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="gpio:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/gpio_jar</output-path>
-    <root id="archive" name="gpio.jar">
-      <element id="module-output" name="gpio" />
-    </root>
-  </artifact>
-</component>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="GridPHaupt" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IO.Controller">
+   <children>
+      <GridPane fx:id="GridPOber" prefHeight="478.0" prefWidth="398.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="180.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="10.0" prefWidth="310.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="168.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="164.0" minHeight="3.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="255.0" minHeight="0.0" prefHeight="47.0" />
+            <RowConstraints maxHeight="280.0" minHeight="10.0" prefHeight="280.0" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="BlauButton" mnemonicParsing="false" onAction="#pinSetzenEins" text="Rot an" />
+            <Button fx:id="GruenButton" mnemonicParsing="false" onAction="#pinSetzenFuenf" text="Blau an" GridPane.rowIndex="1" />
+            <Button fx:id="RotButton" mnemonicParsing="false" onAction="#pinSetzenSechs" text="gruen an" GridPane.rowIndex="2" />
+            <TextField fx:id="rotAufTextf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+            <TextField fx:id="blauAufTextf" layoutX="255.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <TextField fx:id="gruenAufTextf" layoutX="255.0" layoutY="93.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+            <TextField fx:id="rotEntTextf" layoutX="420.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+            <TextField fx:id="gruenEntTextf" layoutX="420.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <TextField fx:id="blauEntTextf" layoutX="190.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button fx:id="resettenButton" mnemonicParsing="false" onAction="#resetten" text="Alle resetten" GridPane.rowIndex="3" />
+            <Button fx:id="debugButton" mnemonicParsing="false" onAction="#debug" text="Debuggen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="debugLabel" prefHeight="267.0" prefWidth="273.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
