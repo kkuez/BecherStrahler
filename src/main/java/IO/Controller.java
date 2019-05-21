@@ -14,63 +14,63 @@ public class Controller {
     @FXML
     GridPane gridPOber;
     @FXML
-    Button RotButton;
+    Button RedButton;
     @FXML
-    Button GruenButton;
+    Button GreenButton;
     @FXML
-    Button BlauButton;
+    Button BlueButton;
     @FXML
     Button debugButton;
     @FXML
-    Button resettenButton;
+    Button resetButton;
     @FXML
-    TextField blauAufTextf;
+    TextField BlueChargeTextf;
     @FXML
-    TextField gruenAufTextf;
+    TextField greenChargeTextf;
     @FXML
-    TextField rotAufTextf;
+    TextField redChargeTextf;
     @FXML
-    TextField blauEntTextf;
+    TextField BlueDechargeTextf;
     @FXML
-    TextField gruenEntTextf;
+    TextField greenDechargeTextf;
     @FXML
-    TextField rotEntTextf;
+    TextField redDechargeTextf;
     @FXML
     Label debugLabel;
 
 
     public void debug(){
         StringBuilder logLabelText=new StringBuilder();
-        logLabelText.append("Pin 1:\nAufladeZeit: "+ PinHub.rot01.getAufladezeit()+"\nEntladeZeit:"+ PinHub.rot01.getEntladezeit()+"\nSpannung: "+ PinHub.rot01.getSpannung());
-        logLabelText.append("\n\nPin 5:\nAufladeZeit: "+ PinHub.blau05.getAufladezeit()+"\nEntladeZeit:"+ PinHub.blau05.getEntladezeit()+"\nSpannung: "+ PinHub.blau05.getSpannung());
-        logLabelText.append("\n\nPin 6:\nAufladeZeit: "+ PinHub.gruen06.getAufladezeit()+"\nEntladeZeit:"+ PinHub.gruen06.getEntladezeit()+"\nSpannung: "+ PinHub.gruen06.getSpannung());
+        logLabelText.append("Pin 1:\nChargeladeZeit: "+ PinHub.red01.getChargeTime()+"\nDechargeladeZeit:"+ PinHub.red01.getDechargeTime()+"\nVoltnnung: "+ PinHub.red01.getVoltnnung());
+        logLabelText.append("\n\nPin 5:\nChargeladeZeit: "+ PinHub.blue05.getChargeTime()+"\nDechargeladeZeit:"+ PinHub.blue05.getDechargeTime()+"\nVoltnnung: "+ PinHub.blue05.getVoltnnung());
+        logLabelText.append("\n\nPin 6:\nChargeladeZeit: "+ PinHub.green06.getChargeTime()+"\nDechargeladeZeit:"+ PinHub.green06.getDechargeTime()+"\nVoltnnung: "+ PinHub.green06.getVoltnnung());
         Logging.Logging.refreshLogLabel(logLabelText.toString());
         debugLabel.setText(Logging.Logging.logLabel);
     }
 
-    public void resetten(){
-        PinHub.pinsPruefenUndBeenden();
+    public void reset(){
+        PinHub.checkPinsAndEnd();
     }
 
-    public void pinSetzenEins() {
-        PinHub.rot01.setAufladezeit(Integer.parseInt(rotAufTextf.getText()));
-        PinHub.rot01.setEntladezeit(Integer.parseInt(rotEntTextf.getText()));
-        //   PinHub.rot01.refresh();
-        PinHub.rot01.setReset(false);
+    public void pinSetOne() {
+        PinHub.red01.setChargeTime(Integer.parseInt(redChargeTextf.getText()));
+        PinHub.red01.setDechargeTime(Integer.parseInt(redDechargeTextf.getText()));
+        //   PinHub.red01.refresh();
+        PinHub.red01.setReset(false);
 
     }
-    public void pinSetzenFuenf() {
-        PinHub.blau05.setAufladezeit(Integer.parseInt(blauAufTextf.getText()));
-        PinHub.blau05.setEntladezeit(Integer.parseInt(blauEntTextf.getText()));
-        //   PinHub.rot01.refresh();
-        PinHub.blau05.setReset(false);
+    public void pinSetFive() {
+        PinHub.blue05.setChargeTime(Integer.parseInt(BlueChargeTextf.getText()));
+        PinHub.blue05.setDechargeTime(Integer.parseInt(BlueDechargeTextf.getText()));
+        //   PinHub.red01.refresh();
+        PinHub.blue05.setReset(false);
     }
-    public void pinSetzenSechs() {
+    public void pinSetSix() {
 
-        PinHub.gruen06.setAufladezeit(Integer.parseInt(gruenAufTextf.getText()));
-        PinHub.gruen06.setEntladezeit(Integer.parseInt(gruenEntTextf.getText()));
-        //   PinHub.rot01.refresh();
-        PinHub.gruen06.setReset(false);
+        PinHub.green06.setChargeTime(Integer.parseInt(greenChargeTextf.getText()));
+        PinHub.green06.setDechargeTime(Integer.parseInt(greenDechargeTextf.getText()));
+        //   PinHub.red01.refresh();
+        PinHub.green06.setReset(false);
 
     }
 

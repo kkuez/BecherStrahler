@@ -1,24 +1,24 @@
 package Messen;
 
 public class MessZustand   {
-    public int aufladezeit;
-    public int entladezeit;
-    public double messwertLDR;
-    public int periodendauer;
-    public double differenzInMessungen;
+    public int chargeTime;
+    public int dechargeTime;
+    public double meassuredValueLDR;
+    public int periodDuration;
+    public double differenceInMeassuremdecharges;
 
     public MessZustand(){}
-    public MessZustand(int aufladezeit, int entladezeit){
-        this.aufladezeit=aufladezeit;
-        this.entladezeit=entladezeit;
+    public MessZustand(int chargeTime, int dechargeTime){
+        this.chargeTime=chargeTime;
+        this.dechargeTime=dechargeTime;
     }
 
-    public MessZustand( int aufladezeit, int entladezeit, double messwertLDR,double differenzInMessungen){
-        this.aufladezeit=aufladezeit;
-        this.entladezeit=entladezeit;
-        this.messwertLDR=messwertLDR;
-        this.differenzInMessungen=differenzInMessungen;
-        periodendauer=aufladezeit+entladezeit;
+    public MessZustand( int chargeTime, int dechargeTime, double meassuredValueLDR,double differenceInMeassuremdecharges){
+        this.chargeTime=chargeTime;
+        this.dechargeTime=dechargeTime;
+        this.meassuredValueLDR=meassuredValueLDR;
+        this.differenceInMeassuremdecharges=differenceInMeassuremdecharges;
+        periodDuration=chargeTime+dechargeTime;
 
     }
 

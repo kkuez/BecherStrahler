@@ -6,26 +6,37 @@ public class Pin extends Thread {
     final int HIGH = 1;
     final int LOW = 0;
     final int OUTPUT = 1;
-    public int pinNumber=0;
+    int pinNumber=0;
     int chargeTime;
     int dechargeTime;
-    boolean blink;
-	
+    public boolean blink;
+
+
     boolean reset=true;
-	int consoleMode=0;
+
+
+
+    int consoleMode=0;
     Object lockCharge= new Object();
     Object lockDecharge= new Object();
     Object lockRes= new Object();
     Object lockVolt= new Object();
-	String voltage="0";
+
+
+    String voltage="0";
     JWiringPiController gpio = new JWiringPiController();
 
-    public Pin(int pinNumberIncoming){
-        pinNumber=pinNumberIncoming;
+
+
+
+    public Pin(int pinNumberinto){
+
+        pinNumber=pinNumberinto;
         if (gpio.wiringPiSetup() < 0) {
             System.out.println("WiringPi setup error");
             return;
         }
+
         gpio.pinMode(pinNumber, OUTPUT);
         gpio.digitalWrite(pinNumber, HIGH);
     }
@@ -33,28 +44,29 @@ public class Pin extends Thread {
     public synchronized void pinSet(boolean value){
         blink=value;
     }
-    public synchronized void pinSet(int charge,  int decharge){
+    public synchronized void pinSet(int chargeladen,  int dechargeladen){
                     setReset(false);
-                    setChargeTime(charge);
-                    setDechargeTime(decharge);
+                    setChargeTime(chargeladen);
+
+                    setDechargeTime(dechargeladen);
 
     }
     public void directLow(){
         gpio.digitalWrite(pinNumber, LOW);
     }
-	
     public void directHigh(){
         gpio.digitalWrite(pinNumber, HIGH);
     }
 
-    public void resetten(){
+    public void reset(){
         setReset(true);
        gpio.digitalWrite(pinNumber, LOW);
     }
-	
-    public void laufen(){
+    public void go(){
         switch (getConsoleMode()){
+
             case 0:
+
                 break;
                 case 1:
                     directLow();
@@ -68,32 +80,36 @@ public class Pin extends Thread {
 
         if(blink){
             int counter=0;
-            boolean getsStronger=true;
+
+            boolean becomesStronger=true;
             while(!reset) {
                 counter++;
                 System.out.println("Neuer Zkylus, "+counter);
                 gpio.digitalWrite(pinNumber, HIGH);
-                if(getsStronger ){
+                if(becomesStronger ){
                     chargeTime++;
                 }else{
                     chargeTime--;
                 }
                 gpio.delay(chargeTime);
                 if(chargeTime>20){
-                    getsStronger=false;
+                    becomesStronger=false;
                 }
                 if(chargeTime<3){
-                    getsStronger=true;
+                    becomesStronger=true;
                 }
                 gpio.digitalWrite(pinNumber, LOW);
                 gpio.delay(dechargeTime);//5ms sind ein guter value
             }
+
         }else{
             while(!reset){
+
+
                 gpio.digitalWrite(pinNumber,LOW);
                 gpio.delay(getChargeTime());
                 gpio.digitalWrite(pinNumber,HIGH);
-                gpio.delay(getDechargeTime());//5ms sind ein guter Wert
+                gpio.delay(getDechargeTime());//5ms sind ein guter Value
             }
         }
     }
@@ -101,33 +117,34 @@ public class Pin extends Thread {
     public void refresh(){
                 switch (pinNumber){
                     case 1:
-                        chargeTime=PinHub.red1ChargeTime;
-                        dechargeTime=PinHub.red1DechargeTime;
-                        voltage=PinHub.red1Voltage;
+                        chargeTime=PinHub.red1ChargeladeZeit;
+                        dechargeTime=PinHub.red1DechargeladeZeit;
+                        voltage=PinHub.red1Voltnnung;
                         break;
                     case 5:
-                        chargeTime=PinHub.blue5ChargeTime;
-                        dechargeTime=PinHub.blue5DechargeTime;
-                        voltage=PinHub.blue5Voltage;
+                        chargeTime=PinHub.Blue5ChargeladeZeit;
+                        dechargeTime=PinHub.Blue5DechargeladeZeit;
+                        voltage=PinHub.Blue5Voltnnung;
                         break;
                     case 6:
-                        chargeTime=PinHub.green6ChargeTime;
-                        dechargeTime=PinHub.green6DechargeTime;
-                        voltage=PinHub.green6Voltage;
+                        chargeTime=PinHub.green6ChargeladeZeit;
+                        dechargeTime=PinHub.green6DechargeladeZeit;
+                        voltage=PinHub.green6Voltnnung;
                         break;
                     default:
                         break;
         }
     }
+	
     public void run( ) {
      //  refresh();
         while(true) {
-            laufen();
+            go();
         }
+
     }
 	
 //GETTER SETTER
-
     public synchronized int getConsoleMode() {
         return consoleMode;
     }
@@ -138,9 +155,9 @@ public class Pin extends Thread {
 
     public int getChargeTime() {
         synchronized (lockCharge){
-
             return chargeTime;
         }
+
     }
 
     public void setChargeTime(int chargeTime) {
@@ -172,13 +189,13 @@ public class Pin extends Thread {
             this.reset = reset;
         }
     }
-    public String getVoltage() {
+    public String getVoltnnung() {
         synchronized (lockVolt) {
             return voltage;
         }
     }
 
-    public void setVoltage(String voltage) {
+    public void setVoltnnung(String voltage) {
         synchronized (lockVolt) {
             this.voltage = voltage;
         }

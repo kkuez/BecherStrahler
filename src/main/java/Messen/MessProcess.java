@@ -10,18 +10,18 @@ import java.util.List;
 public class MessProcess extends Thread {
 
 
-    List<String> messLinesFuerJedenEingang=new ArrayList<>();
+    List<String> meassureLinesForEveryInput=new ArrayList<>();
     Object lock=new Object();
     public void run(){
         for(int i =0;i<8;i++){
-            getMessLinesFuerJedenEingang().add("0");
+            getMeassureLinesForEveryInput().add("0");
         }
         if(new File("/home/pi/Dokumente/Waveshare-Board/Raspberry/ADS1256/ads1256_test").exists()) {
             try {
                 ProcessBuilder builder = new ProcessBuilder("/home/pi/Dokumente/Waveshare-Board/Raspberry/ADS1256/ads1256_test");
 
                 builder.redirectErrorStream(true);
-                String currentLine;
+                String currdechargeLine;
 
                 Process process;
                 process = builder.start();
@@ -33,16 +33,14 @@ public class MessProcess extends Thread {
                     System.out.println(bufferedReader.ready());
                     while (bufferedReader.ready()) {
                         // System.out.println(bufferedReader.readLine());
-                        int aktuellerEingang;
-                        currentLine = bufferedReader.readLine();
+                        int currentInput;
+                        currdechargeLine = bufferedReader.readLine();
                         try {
-                            aktuellerEingang = Integer.parseInt(currentLine.substring(0, 1));
-                            getMessLinesFuerJedenEingang().set(aktuellerEingang, currentLine);
+                            currentInput = Integer.parseInt(currdechargeLine.substring(0, 1));
+                            getMeassureLinesForEveryInput().set(currentInput, currdechargeLine);
                         } catch (Exception e) {
                         }
-
                     }
-
                 }
             } catch (Exception e) {
                 Logging.Logging.warning = "Exception bei Messung:\n" + e.getStackTrace().toString();
@@ -55,14 +53,14 @@ public class MessProcess extends Thread {
 
 
     //GETTER SETTER
-    public List<String> getMessLinesFuerJedenEingang() {
+    public List<String> getMeassureLinesForEveryInput() {
         synchronized (lock) {
-            return messLinesFuerJedenEingang;
+            return meassureLinesForEveryInput;
         }
 
     }
 
-    public void setMessLinesFuerJedenEingang(List<String> messLinesFuerJedenEingang) {
-        this.messLinesFuerJedenEingang = messLinesFuerJedenEingang;
+    public void setMessLinesForJedenEingang(List<String> meassureLinesForEveryInput) {
+        this.meassureLinesForEveryInput = meassureLinesForEveryInput;
     }
 }

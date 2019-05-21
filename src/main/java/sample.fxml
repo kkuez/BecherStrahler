@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="GridPHaupt" alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IO.Controller">
+<GridPane fx:id="GridPHaupt" alignmdecharge="cdechargeer" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IO.Controller">
    <children>
       <GridPane fx:id="GridPOber" prefHeight="478.0" prefWidth="398.0">
         <columnConstraints>
@@ -22,16 +22,16 @@
             <RowConstraints maxHeight="280.0" minHeight="10.0" prefHeight="280.0" />
         </rowConstraints>
          <children>
-            <Button fx:id="BlauButton" mnemonicParsing="false" onAction="#pinSetzenEins" text="Rot an" />
-            <Button fx:id="GruenButton" mnemonicParsing="false" onAction="#pinSetzenFuenf" text="Blau an" GridPane.rowIndex="1" />
-            <Button fx:id="RotButton" mnemonicParsing="false" onAction="#pinSetzenSechs" text="gruen an" GridPane.rowIndex="2" />
-            <TextField fx:id="rotAufTextf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-            <TextField fx:id="blauAufTextf" layoutX="255.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-            <TextField fx:id="gruenAufTextf" layoutX="255.0" layoutY="93.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-            <TextField fx:id="rotEntTextf" layoutX="420.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-            <TextField fx:id="gruenEntTextf" layoutX="420.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <TextField fx:id="blauEntTextf" layoutX="190.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Button fx:id="resettenButton" mnemonicParsing="false" onAction="#resetten" text="Alle resetten" GridPane.rowIndex="3" />
+            <Button fx:id="BlueButton" mnemonicParsing="false" onAction="#pinSetOne" text="Red an" />
+            <Button fx:id="GreenButton" mnemonicParsing="false" onAction="#pinSetFive" text="Blue an" GridPane.rowIndex="1" />
+            <Button fx:id="RedButton" mnemonicParsing="false" onAction="#pinSetSix" text="green an" GridPane.rowIndex="2" />
+            <TextField fx:id="redChargeTextf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignmdecharge="LEFT" />
+            <TextField fx:id="BlueChargeTextf" layoutX="255.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignmdecharge="LEFT" GridPane.rowIndex="1" />
+            <TextField fx:id="greenChargeTextf" layoutX="255.0" layoutY="93.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignmdecharge="LEFT" GridPane.rowIndex="2" />
+            <TextField fx:id="redDechargeTextf" layoutX="420.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignmdecharge="RIGHT" />
+            <TextField fx:id="greenDechargeTextf" layoutX="420.0" layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignmdecharge="RIGHT" GridPane.rowIndex="2" />
+            <TextField fx:id="BlueDechargeTextf" layoutX="190.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="80.0" text="3" GridPane.columnIndex="1" GridPane.halignmdecharge="RIGHT" GridPane.rowIndex="1" />
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#reset" text="Alle reset" GridPane.rowIndex="3" />
             <Button fx:id="debugButton" mnemonicParsing="false" onAction="#debug" text="Debuggen" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="debugLabel" prefHeight="267.0" prefWidth="273.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>

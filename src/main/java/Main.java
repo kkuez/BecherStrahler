@@ -8,14 +8,14 @@ import Messen.MessThread;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Pardecharge;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
 public class Main extends Application{
 
-    static Scanner eingabeScan;
+    static Scanner entryScan;
     static IO leuchtenServer;
     static MessThread messThread;
     public static void main(String[] args) {
@@ -23,30 +23,30 @@ public class Main extends Application{
 
         while(true){
         System.out.println("Eingabe:");
-        switch (eingabeScan.nextInt()){
+        switch (entryScan.nextInt()){
             case 1:
-                System.out.println("Setze Alle Pins dauerhaft auf HIGH");
-                PinHub.rot01.setReset(true);
-                PinHub.rot01.setConsoleMode(1);
+                System.out.println("Setze Alle Pins dauerhaft charge HIGH");
+                PinHub.red01.setReset(true);
+                PinHub.red01.setConsoleMode(1);
 
-                PinHub.blau05.setReset(true);
-                PinHub.blau05.setConsoleMode(1);;
-                PinHub.gruen06.setReset(true);
-                PinHub.gruen06.setConsoleMode(1);
+                PinHub.blue05.setReset(true);
+                PinHub.blue05.setConsoleMode(1);;
+                PinHub.green06.setReset(true);
+                PinHub.green06.setConsoleMode(1);
                 break;
             case 2:
-                System.out.println("Setze Alle Pins dauerhaft auf LOW");
-                PinHub.rot01.setReset(false);
-                PinHub.rot01.setConsoleMode(2);
+                System.out.println("Setze Alle Pins dauerhaft charge LOW");
+                PinHub.red01.setReset(false);
+                PinHub.red01.setConsoleMode(2);
 
-                PinHub.blau05.setReset(false);
-                PinHub.blau05.setConsoleMode(2);
-                PinHub.gruen06.setReset(false);
-                PinHub.gruen06.setConsoleMode(2);
+                PinHub.blue05.setReset(false);
+                PinHub.blue05.setConsoleMode(2);
+                PinHub.green06.setReset(false);
+                PinHub.green06.setConsoleMode(2);
                 break;
             case 3:
                 System.out.println("Init Main neu");
-                PinHub.pinsPruefenUndBeenden();
+                PinHub.checkPinsAndEnd();
                 nulle();
                 initMain();
                 break;
@@ -75,12 +75,12 @@ public static void nulle(){
         messThread=null;
 }
     public static void initMain(){
-        eingabeScan = new Scanner(System.in);
+        entryScan = new Scanner(System.in);
         PinHub.init();
 
 
-        if(!new File(System.getProperty("user.home")+File.separator+"Dokumente"+File.separator+"JWiringPi"+"jwiringpi"+File.separator+"logs").exists()){
-            File logFolder = new File(System.getProperty("user.home")+File.separator+"Dokumente"+File.separator+"JWiringPi"+"jwiringpi"+File.separator+"logs");
+        if(!new File(System.getProperty("user.home")+File.separator+"Dokumdechargee"+File.separator+"JWiringPi"+"jwiringpi"+File.separator+"logs").exists()){
+            File logFolder = new File(System.getProperty("user.home")+File.separator+"Dokumdechargee"+File.separator+"JWiringPi"+"jwiringpi"+File.separator+"logs");
             logFolder.mkdir();
         }
         serverStarten();
@@ -97,7 +97,7 @@ public static void nulle(){
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-       Parent root =       FXMLLoader.load(getClass().getResource("sample.fxml"));
+       Pardecharge root =       FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setScene(new Scene(root, 300, 600));
         primaryStage.setTitle("LeuchtenController");
       primaryStage.show();

@@ -7,30 +7,34 @@ import java.util.List;
 
 public class TikToker extends Thread{
     IO io ;
-            public TikToker(IO iorein){
-        io=iorein;
+            public TikToker(IO iointo){
+        io=iointo;
 
             }
-    List<TikTok> tiktokListe = new ArrayList<>();
-            TikTok tiktokZumFuellen=new TikTok(true, Calendar.getInstance().getTimeInMillis()) ;
+    List<TikTok> tiktokList = new ArrayList<>();
+            TikTok tiktokToFill=new TikTok(true, Calendar.getInstance().getTimeInMillis()) ;
+
+
+
+
 
     @Override
     public void run(){
 
-        tiktokListe.add(tiktokZumFuellen);
-        tiktokListe.add(tiktokZumFuellen);
+        tiktokList.add(tiktokToFill);
+        tiktokList.add(tiktokToFill);
         while(true){
             try {
                 sleep(5000);
                 io.getMsgList().add("tok");
-                if((Calendar.getInstance().getTimeInMillis()-tiktokListe.get(0).zeitPunktInMillis)>5000||tiktokListe.get(0).gueltig==false){
-                    setTiktokListe(new TikTok(false,Calendar.getInstance().getTimeInMillis()));
+                if((Calendar.getInstance().getTimeInMillis()-tiktokList.get(0).pointOfTimeInMillis)>5000||tiktokList.get(0).valid==false){
+                    setTiktokList(new TikTok(false,Calendar.getInstance().getTimeInMillis()));
 
                 }
-                if(tiktokListe.size()>3){
-                    tiktokListe.remove(3);
+                if(tiktokList.size()>3){
+                    tiktokList.remove(3);
                 }
-                if(!tiktokListe.get(0).gueltig&&!tiktokListe.get(1).gueltig&&!tiktokListe.get(2).gueltig){
+                if(!tiktokList.get(0).valid&&!tiktokList.get(1).valid&&!tiktokList.get(2).valid){
                     io.isConnected=false;
                     System.out.println("Verbindung verloren.");
                     break;
@@ -41,8 +45,8 @@ public class TikToker extends Thread{
         }
     }
 
-    public void setTiktokListe(TikTok rein){
-        tiktokListe.add(0,rein);
+    public void setTiktokList(TikTok into){
+        tiktokList.add(0,into);
     }
 }
 

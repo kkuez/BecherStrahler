@@ -3,11 +3,11 @@ package IO;
 import java.util.Calendar;
 
 public class TikTok {
-    public TikTok(boolean gueltigrein, long zeitPunktInMillisrein){
-        gueltig=gueltigrein;
-        zeitPunktInMillis=zeitPunktInMillisrein;
+    public TikTok(boolean validInto, long pointOfTimeInMillisInto){
+        valid=validInto;
+        pointOfTimeInMillis=pointOfTimeInMillisInto;
     }
-    boolean gueltig;
-    Long zeitPunktInMillis = Calendar.getInstance().getTimeInMillis();
+    boolean valid;
+    Long pointOfTimeInMillis = Calendar.getInstance().getTimeInMillis();
 
 }

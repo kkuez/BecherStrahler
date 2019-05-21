@@ -9,62 +9,60 @@ import java.util.*;
 public class MessThread extends Thread {
 
     MessProcess messProcess;
-
-
-    List<MessZustand> messZustandsListe=new ArrayList<>();
+    List<MessZustand> messZustandsList=new ArrayList<>();
 
     public MessThread(){
          messProcess= new MessProcess();
          messProcess.start();
     }
 
-public double einmalAbrufen(MessProcess messProcess, int pin){
-    double zurueck=0;
-                        while(zurueck==0){
+public double getOnce(MessProcess messProcess, int pin){
+    double returnOut=0;
+                        while(returnOut==0){
                             try {//Line 1 ist der LDR
-                                zurueck = Double.parseDouble(messProcess.getMessLinesFuerJedenEingang().get(1).substring(messProcess.getMessLinesFuerJedenEingang().get(1).indexOf("(") + 1, messProcess.getMessLinesFuerJedenEingang().get(1).indexOf(".") + 4));
+                                returnOut = Double.parseDouble(messProcess.getMeassureLinesForEveryInput().get(1).substring(messProcess.getMeassureLinesForEveryInput().get(1).indexOf("(") + 1, messProcess.getMeassureLinesForEveryInput().get(1).indexOf(".") + 4));
                             }catch (Exception e){
                                 System.out.println("Fehler beim Parsen von Pin 0"+pin);
                                 e.printStackTrace();
                             }
                             }
-                            messProcess.getMessLinesFuerJedenEingang().set(pin, "0");
-    return zurueck;
+                            messProcess.getMeassureLinesForEveryInput().set(pin, "0");
+    return returnOut;
 }
-public void kalibieren(int pinnummer){
-    Pin aktuellerPin=new Pin(pinnummer);
-    switch (pinnummer){
+public void calibrate(int pinnumber){
+    Pin currentPin=new Pin(pinnumber);
+    switch (pinnumber){
         case 1:
-            aktuellerPin= PinHub.rot01;
+            currentPin= PinHub.red01;
             break;
         case 5:
-            aktuellerPin= PinHub.blau05;
+            currentPin= PinHub.blue05;
             break;
         case 6:
-            aktuellerPin= PinHub.gruen06;
+            currentPin= PinHub.green06;
             break;
 
     }
 
-    System.out.println("Warte auf erste komplette Messung...");
+    System.out.println("Warte charge erste komplette Messung...");
 
-    while(messProcess.getMessLinesFuerJedenEingang().size()<8){
+    while(messProcess.getMeassureLinesForEveryInput().size()<8){
 
     }
-    double messungMax=0;
-    double messungMin=0;
-    double messungdifferenz;
-    double messungMittelwert;
-    double messungAktuellerWert=0;
-    double[] messungsArrayAlleWerte=new double[20];
+    double meassureM=0;
+    double meassureMin=0;
+    double meassureDiff;
+    double meassureAverageValue;
+    double meassureCurrentValue=0;
+    double[] arrayOfAllMeassureValues=new double[20];
 
   for(int i =0;i<20;i++) {
         for (int a = 0; a < 20; a++) {
             if(a+i<23) {
-                for (int b = 0; b < 10; b++) {      //10 Messungen um Differenz raus zuziehen
+                for (int b = 0; b < 10; b++) {      //10 Messungen um Differenz out zuziehen
 
-                    messungAktuellerWert = einmalAbrufen(messProcess, pinnummer);
-                    messungsArrayAlleWerte[b] = messungAktuellerWert;
+                    meassureCurrentValue = getOnce(messProcess, pinnumber);
+                    arrayOfAllMeassureValues[b] = meassureCurrentValue;
                     try {
                         sleep(100);
                     } catch (InterruptedException e) {
@@ -73,49 +71,42 @@ public void kalibieren(int pinnummer){
 
                 }
 
-                Arrays.sort(messungsArrayAlleWerte);
-                double[] gefilterterArray = new double[8];
+                Arrays.sort(arrayOfAllMeassureValues);
+                double[] filteredArray = new double[8];
                 for (int c = 0; c < 8; c++) {
-                    gefilterterArray[c] = messungsArrayAlleWerte[c + 2];
+                    filteredArray[c] = arrayOfAllMeassureValues[c + 2];
                 }
 
-                for (double d : gefilterterArray) {
+                for (double d : filteredArray) {
                     if (d == 0) {
-                        messungMax = messungAktuellerWert;
-                        messungMin = messungAktuellerWert;
+                        meassureM = meassureCurrentValue;
+                        meassureMin = meassureCurrentValue;
                     } else {
-                        if (messungAktuellerWert < messungMin) {
-                            messungMin = messungAktuellerWert;
+                        if (meassureCurrentValue < meassureMin) {
+                            meassureMin = meassureCurrentValue;
                         }
-                        if (messungAktuellerWert > messungMax) {
-                            messungMax = messungAktuellerWert;
+                        if (meassureCurrentValue > meassureM) {
+                            meassureM = meassureCurrentValue;
                         }
                     }
                 }
 
-                messungdifferenz = messungMax - messungMin;
-
-
+                meassureDiff = meassureM - meassureMin;
                 MessZustand messZustand = new MessZustand();
+                currentPin.pinSet(i, a);
+                messZustand = new MessZustand(i, a, meassureM, meassureDiff);
 
-                aktuellerPin.pinSetzen(i, a);
-
-                messZustand = new MessZustand(i, a, messungMax, messungdifferenz);
-
-
-                if (messZustand.messwertLDR != 0) {
-                    messZustandsListe.add(messZustand);
+                if (messZustand.meassuredValueLDR != 0) {
+                    messZustandsList.add(messZustand);
                 }
-
             }
         }
     }
 
-    System.out.println("Messung beendet\nVerarbeite Liste...");
-    messZustandsListe= PinHub.listeVerarbeiten(messZustandsListe);
-    PinHub.setKalibrierteMessListe(pinnummer,messZustandsListe);
-
-    PinHub.pinsPruefenUndBeenden();
+    System.out.println("Messung beendet\nVerarbeite List...");
+    messZustandsList= PinHub.processList(messZustandsList);
+    PinHub.setCalibratedCalculateList(pinnumber,messZustandsList);
+    PinHub.checkPinsAndEnd();
 }
 
 
@@ -123,11 +114,10 @@ public void kalibieren(int pinnummer){
 
 
     public void run(){
-
-       kalibieren(1);
-       kalibieren(5);
-       kalibieren(6);
-       PinHub.speicherKalibrierteListen();
+       calibrate(1);
+       calibrate(5);
+       calibrate(6);
+       PinHub.saveCalibratedLists();
         messProcess=null;
        System.out.println("Kalibrierung beendet");
 
