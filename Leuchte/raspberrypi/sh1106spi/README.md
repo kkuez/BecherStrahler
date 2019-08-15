@@ -11,10 +11,10 @@ Before running this demo, you have to enable the SPI interface on the Raspberry 
     * CS     ->    24 (Physical, BCM: CE0, 8)
     * D/C    ->    36 (Physical, BCM: 16)
     * RES    ->    35 (Physical, BCM: 19) <br />
-2.  copy the file jwiringpi-native/libc4jwiringpi.so to the system library path e.g. /usr/lib.<br />
+2.  copy the file main.java.jwiringpi-native/libc4jwiringpi.so to the system library path e.g. /usr/lib.<br />
         `sudo cp libc4jwiringpi.so /usr/lib`
-3.  copy the directory jwiringpi to the directory of this project (i.e. sh1106spi).<br />
-        `cp -rf jwiringpi sh1106spi`
+3.  copy the directory main.java.jwiringpi to the directory of this project (i.e. sh1106spi).<br />
+        `cp -rf main.java.jwiringpi sh1106spi`
 4.  run with<br />
         `java SH1106SPIDemo`
 ### Note

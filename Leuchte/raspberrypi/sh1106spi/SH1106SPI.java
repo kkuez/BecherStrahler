@@ -18,7 +18,7 @@
   ***********************************************************************
  */
 
-import jwiringpi.*;
+import main.java.jwiringpi.*;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;

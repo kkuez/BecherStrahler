@@ -18,7 +18,7 @@
   ***********************************************************************
  */
  
-import jwiringpi.*;
+import main.java.jwiringpi.*;
 import java.io.*;
 
 public class AT24EEPROM extends JWiringPiController {

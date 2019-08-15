@@ -10,10 +10,10 @@ AT24C04     =>      RPi
 * SDA       ->      SDA.1 (not SDA.0)
 * SCL       ->      SCL.1 (not SCL.0)
 </pre>
-2.  copy the file jwiringpi-native/libc4jwiringpi.so to the system library path e.g. /usr/lib.<br />
+2.  copy the file main.java.jwiringpi-native/libc4jwiringpi.so to the system library path e.g. /usr/lib.<br />
         `sudo cp libc4jwiringpi.so /usr/lib`
-3.  copy the directory jwiringpi to the directory (i.e. at24) of this project.<br />
-        `cp -rf jwiringpi at24`
+3.  copy the directory main.java.jwiringpi to the directory (i.e. at24) of this project.<br />
+        `cp -rf main.java.jwiringpi at24`
 4.  run with<br />
         `java AT24Demo`
 *   Note: if you don't want to copy the library to the /usr/lib, you can specify the library path before running your Java program, like:

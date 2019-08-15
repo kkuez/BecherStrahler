@@ -12,10 +12,10 @@ Before running this demo, you have to enable the SPI interface on the Raspberry 
     * D/C    ->    36 (Physical, BCM: 16)
     * RES    ->    35 (Physical, BCM: 19)
 Please be ensure that the OLED is set to SPI mode but not I2C mode, and the SPI interface is enabled on your Pi.
-2.  copy the file jwiringpi-native/libc4jwiringpi.so to the system library path e.g. /usr/lib.<br />
+2.  copy the file main.java.jwiringpi-native/libc4jwiringpi.so to the system library path e.g. /usr/lib.<br />
         `sudo cp libc4jwiringpi.so /usr/lib`
-3.  copy the directory jwiringpi to the directory of this project (i.e. ssd1331spi).<br />
-        `cp -rf jwiringpi ssd1331spi`
+3.  copy the directory main.java.jwiringpi to the directory of this project (i.e. ssd1331spi).<br />
+        `cp -rf main.java.jwiringpi ssd1331spi`
 4.  run with<br />
         `java SSD1331SPIDemo`
 *   Note: if you don't want to copy the library to the /usr/lib, you can specify the library path before running your Java program, like:
